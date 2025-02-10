@@ -1,5 +1,6 @@
 class Solution {
 public:
+     //method-1 -easy
     // vector<vector<string>> groupAnagrams(vector<string>& strs) {
     //     map<string,vector<string> > mp;
     //     //Time complexity-0(N*M*log(M))
@@ -17,6 +18,8 @@ public:
     //         ans.push_back(it->second);
     //     }
     //     return ans;
+
+     //Method-2
      std:: array<int,256> hash(string s){
         std::array<int,256>hash={0};
         for(int i=0;i<s.size();i++){
