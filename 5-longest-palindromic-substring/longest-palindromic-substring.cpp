@@ -10,6 +10,7 @@ public:
         }
         return true;
     }
+    //Time complexity-0(n^2)
     string longestPalindrome(string s) {
         string ans="";
         for(int i=0;i<s.size();i++){
