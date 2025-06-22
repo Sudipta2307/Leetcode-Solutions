@@ -1,0 +1,46 @@
+You are given an integer array nums consisting of n elements, and an integer k.
+
+Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value. Any answer with a calculation error less than 10-5 will be accepted.
+
+Solution
+
+class Solution {
+public:
+    double bruteforce(vector<int>& nums, int &k){
+           int i=0;
+           int j=k-1;
+           int max_sum=INT_MIN;
+           while(j<nums.size()){
+                   int sum=0;
+                   for(int y=i;y<=j;y++){
+                    sum+=nums[y];
+                   }
+                   max_sum=max(max_sum,sum);
+                   i++,j++;
+           }
+           return max_sum/(double)k;
+           //Time complexity-0(n^2)
+    }
+    double slidingwindow(vector<int>& nums, int &k){
+        int i=0;
+        int j=k-1;
+        int sum=0;
+        for(int y=i;y<=j;y++){
+            sum=sum+nums[y];
+        }
+        int maxsum=sum;
+        j++;
+        while(j<nums.size()){
+            sum=sum-nums[i];
+            sum=sum+nums[j];
+            i++,j++;
+            maxsum=max(sum,maxsum);
+        }
+        return maxsum/(double)k;
+    }
+    //Time complexity-0(n);
+    double findMaxAverage(vector<int>& nums, int k) {
+        //return bruteforce(nums,k);
+        return slidingwindow(nums,k);
+    }
+};
