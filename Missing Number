@@ -1,0 +1,47 @@
+268. Missing Number
+Companies
+Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
+
+Solution
+
+class Solution {
+public:
+    int sortingNumber(vector<int>& nums) {//method-2
+        sort(nums.begin(),nums.end());//T.C-O(nlogn),S.C=0(1)
+        for(int i=0;i<nums.size();i++){//0(n)
+            if(nums[i]!=i){
+                return i;
+            }
+        }
+        return nums.size();
+    }
+    int xorr(vector<int>&nums){
+        int ans=0;
+        //Xor all values of array
+        for(int i=0;i<nums.size();i++){
+                ans^=nums[i];
+        }  
+        //Xor all items form 0 to n
+        int n=nums.size();
+        for(int i=0;i<=n;i++){
+            ans^=i;
+        } 
+        return ans; 
+    }
+    int missingNumber(vector<int>& nums) {
+        int n=nums.size();
+        int sum=(n*(n+1))/2;
+        //Method 1
+        //return sum-accumulate(nums.begin(),nums.end(),0);
+        //accumulate adds all the elements present in the list 
+        //same method but different
+        int trial=0;
+        for(int i=0;i<n;i++){
+            trial+=nums[i];
+        }
+
+        //return sum-trial;
+        //return sortingNumber(nums);
+        return xorr(nums);
+    }
+};
