@@ -1,0 +1,51 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    //Method-1-optimised method
+    //Time complexity-o(n)
+    //space complexity-o(1)
+    bool hasCycle(ListNode *head){
+        ListNode *fast=head;
+        ListNode *slow=head;
+        while(fast!=NULL){
+            fast=fast->next;
+            if(fast!=NULL){
+                fast=fast->next;
+                slow=slow->next;
+                if(fast==slow){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+     //Method-2
+    //Time complexity-0(n),space complexity-0(n)
+    // bool hasCycle(ListNode *head) {
+    //     unordered_map<ListNode *,bool> m;
+    //     ListNode *temp = head;
+    //     while(temp!=NULL){
+    //         if(m[temp]==true){
+    //             //cycle present
+    //             return true;
+    //         }
+    //         else{
+    //             //pehlse se true nahi hai yaani false
+    //             //this node is not visited hence true
+    //             m[temp]=true;
+    //         }
+    //         temp=temp->next;
+    //     }
+    //     //all the nodes has been traversed
+    //     //so return false
+    //     return false;
+    
+};
